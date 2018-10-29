@@ -7,7 +7,7 @@
   <meta charset="utf-8">
 
   <title>Partner Dash</title>
-  
+
   <script type="text/javascript">
     var auto_options = {};
     var chip_options = {
@@ -32,7 +32,7 @@
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}">
   <script src="{% static 'app/scripts.js' %}"></script>
-  
+
 </head>
 <body>
 {% if not user.is_authenticated %}
@@ -59,7 +59,7 @@
     </ul>
   </div>
 </nav>
-        
+
 
   <div class="flex flex_reverse main">
     {% if paginator.has_previous %}
@@ -106,9 +106,9 @@
             </div>
             {% endfor %}
             {% if card.assigned and card.assigned.username == user.username %}
-            <a href="claim/{{ card.id }}"><i class="material-icons" id="font">indeterminate_check_box</i></a>
+            <a href="claim/{{ card.id }}" class="red-text "><i class="task_button material-icons">block</i></a>
             {% else %}
-            <a href="claim/{{ card.id }}"><i class="material-icons" id="font">check_box</i></a>
+            <a href="claim/{{ card.id }}"  class="green-text"><i class="task_button material-icons" id="font">check_box</i></a>
             {% endif %}
           </div>
           <hr>

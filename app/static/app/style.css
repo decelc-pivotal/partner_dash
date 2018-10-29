@@ -12,7 +12,7 @@ body {
 }
 
 /* --- Fix CSS for input to fit custom cards */
-.reply input[type="text"], 
+.reply input[type="text"],
 .reply .input-field{
     height: auto!important;
     margin-bottom: 0!important;
@@ -276,7 +276,7 @@ nav a.btn{
 }
 
 .partner_card{
-   padding: 5px 10px 
+   padding: 5px 10px
 }
 
 .partner_search{
@@ -304,4 +304,8 @@ nav a.btn{
 /* We want the logo on the left */
 .autocomplete-content img.right{
     float: left!important;
+}
+
+.task_button {
+  font-size: 30px!important;
 }

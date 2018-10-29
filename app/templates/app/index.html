@@ -16,13 +16,15 @@
       autocompleteOptions: {
         data: {
           {% for partner in partners %}
-          "{{ partner.name }}": "{{ partner.logo }}",
+          "#{{ partner.name }}",
           {% endfor %}
         },
         limit: Infinity,
         minLength: 1
       },
     };
+
+    console.log(chip_options.autocompleteOptions.data);
   </script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -32,6 +34,33 @@
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}">
   <script src="{% static 'app/scripts.js' %}"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+  <script>
+  $( function() {
+
+    var availableTags = [
+        {% for partner in partners %}
+        "#{{ partner.name }}",
+        {% endfor %}
+    ];
+
+    $( ".tags" ).autocomplete({
+      source: availableTags
+    });
+
+    $( ".tags" ).keydown(function(e) {
+      if (e.keyCode == 9) {
+        e.preventDefault();
+        //i = $( ".tags" ).autocomplete( "instance" );
+      }
+    });
+  } );
+  </script>
 
 </head>
 <body>
@@ -143,8 +172,9 @@
             <form class="form-input" action="reply/{{ card.id }}" method="post">
               {% csrf_token %}
               <div class="input-field">
-                <input id="reply{{card.pk}}" name="data" type="text" class="validate">
-                <label for="reply{{card.pk}}">Reply</label>
+                 <input type="text" name="data" id="tags{{card.pk}}" class="tags">
+                 <label for="reply{{card.pk}}">Reply</label>
+              </div>
               </div>
             </form>
           </div>
